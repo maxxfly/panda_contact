@@ -1,3 +1,29 @@
 <h2>Contacts List</h2>
 
-<%= @contacts.inspect %> 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Names</th>
+      <th>Email</th>
+  </thead>
+  <tbody>
+    <% @contacts['connections'].each do |connection| %>
+      <tr>
+        <td>
+          <% if connection['names'] %>
+            <% connection['names'].each do |name| %>
+              <%= name['displayName'] %><br/>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if connection['emailAddresses'] %>
+            <% connection['emailAddresses'].each do |email| %>
+              <%= email['value'] %><br/>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

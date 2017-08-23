@@ -27,7 +27,7 @@ class GoogleOauthService
     token_object = OAuth2::AccessToken.new(@client, token)
 
     answer = token_object.get('https://people.googleapis.com/v1/people/me/connections',
-                              params: { "pageSize":  3,
+                              params: { "pageSize":  30,
                                         "personFields": "names,emailAddresses"
                                        })
     if answer.status == 200
