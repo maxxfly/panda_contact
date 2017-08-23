@@ -21,7 +21,7 @@ class GoogleOauthService
   end
 
   def token(code)
-    @client.auth_code.get_token(code, :redirect_uri => "#{@host}/callback")
+    @client.auth_code.get_token(code, redirect_uri: "#{@host}/callback")
   end
 
   def contacts_list(token, page_token=nil)
