@@ -2,6 +2,7 @@ class GoogleOauthService
   require 'oauth2'
 
   def initialize()
+    @host = Rails.env.production? ? "https://panda-contact.herokuapp.com" : "http://localhost:3000"
     @client = get_client
   end
 
@@ -15,12 +16,12 @@ class GoogleOauthService
   end
 
   def link_authorization
-    @client.auth_code.authorize_url(redirect_uri: 'http://localhost:3000/callback',
+    @client.auth_code.authorize_url(redirect_uri: "#{@host}/callback",
                                     scope: "https://www.googleapis.com/auth/contacts.readonly")
   end
 
   def token(code)
-    @client.auth_code.get_token(code, :redirect_uri => 'http://localhost:3000/callback')
+    @client.auth_code.get_token(code, :redirect_uri => "#{@host}/callback")
   end
 
   def contacts_list(token, page_token=nil)
