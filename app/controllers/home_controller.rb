@@ -6,14 +6,16 @@ class HomeController < ApplicationController
   end
 
   def callback
-    code = params[:code]
-
     google_oauth_service = GoogleOauthService.new
-    @token = google_oauth_service.token(code)
+    @token = google_oauth_service.token(params[:code])
 
-    Rails.logger.debug "==== " + @token.to_hash.inspect
+    cookies[:token] = @token.to_hash[:access_token]
 
-    render inline: "ok"
+    redirect_to contacts_list_path
+  end
+
+  def contacts_list
+
   end
 
 end

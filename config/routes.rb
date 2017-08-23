@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root to: 'home#welcome'
 
   get 'callback', to: 'home#callback'
+  get 'contacts_list', to: 'home#contacts_list'
 
 end
