@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   def contacts_list
 
     google_oauth_service = GoogleOauthService.new
-    @contacts = google_oauth_service.contacts_list(cookies[:token])
+    @contacts = google_oauth_service.contacts_list(cookies[:token], params[:page_token])
 
   end
 

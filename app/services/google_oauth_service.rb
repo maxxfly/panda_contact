@@ -23,13 +23,14 @@ class GoogleOauthService
     @client.auth_code.get_token(code, :redirect_uri => 'http://localhost:3000/callback')
   end
 
-  def contacts_list(token)
+  def contacts_list(token, page_token=nil)
     token_object = OAuth2::AccessToken.new(@client, token)
 
     answer = token_object.get('https://people.googleapis.com/v1/people/me/connections',
                               params: { "pageSize":  30,
                                         "sortOrder": "FIRST_NAME_ASCENDING",
-                                        "personFields": "names,emailAddresses"
+                                        "personFields": "names,emailAddresses",
+                                        "pageToken": page_token
                                        })
     if answer.status == 200
       JSON.parse(answer.body)

@@ -27,3 +27,20 @@
     <% end %>
   </tbody>
 </table>
+
+<nav aria-label="pages">
+  <ul class="pager">
+    <% if params[:page_token] %>
+      <li>
+        <%= link_to "Previous", :back %>
+      </li>
+    <% end %>
+
+    <% if @contacts['nextPageToken'] %>
+      <li>
+        <%= link_to "Next", contacts_list_path(page_token: @contacts['nextPageToken']) %>
+      </li>
+    <% end %>
+
+  </ul>
+</nav>
