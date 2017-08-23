@@ -28,6 +28,7 @@ class GoogleOauthService
 
     answer = token_object.get('https://people.googleapis.com/v1/people/me/connections',
                               params: { "pageSize":  30,
+                                        "sortOrder": "FIRST_NAME_ASCENDING",
                                         "personFields": "names,emailAddresses"
                                        })
     if answer.status == 200
